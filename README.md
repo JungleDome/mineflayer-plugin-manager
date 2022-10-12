@@ -33,6 +33,7 @@ Simple example:
 ```js
 const Mineflayer = require("mineflayer");
 const { plugin as PluginManager } = require("mineflayer-plugin-manager");
+const gui = require("mineflayer-gui");
 
 const bot = mineflayer.createBot({
   host: 'localhost',
@@ -40,7 +41,10 @@ const bot = mineflayer.createBot({
   username: 'bot',
 });
 
-//Automatically load all plugins inside './myFolder' folder
+//Load all remote plugins that is installed from npm
+bot.loadPlugin(gui.plugin);
+
+//Loads plugin manager, it will automatically load all local plugins inside './myFolder' folder
 bot.loadPlugin(PluginManager);
 
 //Reload all plugins with latest content
@@ -52,6 +56,7 @@ Advanced usage (refer [API](https://github.com/JungleDome/mineflayer-plugin-mana
 ```js
 const Mineflayer = require("mineflayer");
 const { plugin as PluginManager } = require("mineflayer-plugin-manager");
+const gui = require("mineflayer-gui");
 
 const bot = mineflayer.createBot({
   host: 'localhost',
@@ -67,7 +72,10 @@ const bot = mineflayer.createBot({
   }
 });
 
-//Automatically load all plugins inside './myFolder' folder
+//Load all remote plugins that is installed from npm
+bot.loadPlugin(gui.plugin);
+
+//Loads plugin manager, it will automatically load all local plugins inside './myFolder' folder
 bot.loadPlugin(PluginManager);
 
 //Reload all plugins with latest content
