@@ -1,36 +1,37 @@
 {
-  "name": "mineflayer-plugin-template",
+  "name": "mineflayer-plugin-manager",
   "version": "1.0.0",
-  "description": "A template repository for creating Mineflayer plugins using Typescript.",
+  "description": "A plugin manager with hot-reload function for Mineflayer",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prepare": "tsc && require-self",
+    "prepare": "tsc",
     "clean": "rm -rf lib",
-    "test": "test"
+    "test": "node ./test/index.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheDudeFromCI/mineflayer-plugin-template.git"
+    "url": "git+https://github.com/JungleDome/mineflayer-plugin-manager.git"
   },
   "keywords": [
     "mineflayer",
     "plugin",
-    "template"
+    "manager",
+    "reload",
+    "hot-reload"
   ],
-  "author": "TheDudeFromCI",
+  "author": "JungleDome",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TheDudeFromCI/mineflayer-plugin-template/issues"
+    "url": "https://github.com/JungleDome/mineflayer-plugin-manager/issues"
   },
-  "homepage": "https://github.com/TheDudeFromCI/mineflayer-plugin-template#readme",
+  "homepage": "https://github.com/JungleDome/mineflayer-plugin-manager#readme",
   "dependencies": {
-    "mineflayer": "^2.21.0"
+    "mineflayer": "^4.4.0"
   },
   "devDependencies": {
-    "@types/node": "14.14.5",
-    "require-self": "0.2.3",
-    "typescript": "4.0.5"
+    "@types/node": "^18.8.2",
+    "typescript": "^4.8.4"
   },
   "files": [
     "lib/**/*"

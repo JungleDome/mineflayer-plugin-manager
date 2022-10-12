@@ -1,48 +1,86 @@
-<h1 align="center">mineflayer-plugin-template</h1>
-<p align="center"><i>A simple template repository for developing Mineflayer plugins through Typescript.</i></p>
+<h1 align="center">mineflayer-plugin-manager</h1>
+<p align="center"><i>A plugin manager that is capable of hot-reloading Mineflayer plugin.</i></p>
 
 <p align="center">
-  <img src="https://github.com/TheDudeFromCI/mineflayer-plugin-template/workflows/Build/badge.svg" />
-  <img src="https://img.shields.io/npm/v/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/repo-size/TheDudeFromCI/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/npm/dm/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/contributors/TheDudeFromCI/mineflayer-plugin-template" />
-  <img src="https://img.shields.io/github/license/TheDudeFromCI/mineflayer-plugin-template" />
+  <img src="https://github.com/JungleDome/mineflayer-plugin-manager/workflows/Build/badge.svg" />
+  <img src="https://img.shields.io/npm/v/mineflayer-plugin-manager" />
+  <img src="https://img.shields.io/github/repo-size/JungleDome/mineflayer-plugin-manager" />
+  <img src="https://img.shields.io/npm/dm/mineflayer-plugin-manager" />
+  <img src="https://img.shields.io/github/contributors/JungleDome/mineflayer-plugin-manager" />
+  <img src="https://img.shields.io/github/license/JungleDome/mineflayer-plugin-manager" />
 </p>
 
 ---
 
-### Getting Started
+### Installation
 
-This plugin is built using Node and can be installed using:
 ```bash
-npm install --save mineflayer-plugin-template
+npm install mineflayer-plugin-manager
 ```
 
-This plugin has a relies on [random-plugin]() for a-b-c. That plugin should be loaded first.
+### Usage
 
-### Simple Bot
+Simple example:
 
-The brief description goes here.
+- Run `npm install mineflayer-plugin-manager`.
+- Place all Mineflayer plugins inside `./plugins` folder.
+- Import mineflayer-plugin-manager: `const { plugin as PluginManager } = require('mineflayer-plugin-manager')`.
+- Call `bot.loadPlugin(PluginManager)`.
+- Make changes to your plugins.
+- Call `bot.pluginManager.reload()`.
+- Enjoy new changes.
 
 ```js
-// Create your bot
-const mineflayer = require("mineflayer");
-const bot = mineflayer.createBot({ username: "Player" });
+const Mineflayer = require("mineflayer");
+const { plugin as PluginManager } = require("mineflayer-plugin-manager");
 
-// Do stuff
-bot.doStuff()
+const bot = mineflayer.createBot({
+  host: 'localhost',
+  port: 25565,
+  username: 'bot',
+});
+
+//Automatically load all plugins inside './myFolder' folder
+bot.loadPlugin(PluginManager);
+
+//Reload all plugins with latest content
+bot.pluginManager.reload();
+```
+
+Advanced usage (refer [API](https://github.com/JungleDome/mineflayer-plugin-manager/blob/master/docs/api.md)):
+
+```js
+const Mineflayer = require("mineflayer");
+const { plugin as PluginManager } = require("mineflayer-plugin-manager");
+
+const bot = mineflayer.createBot({
+  host: 'localhost',
+  port: 25565,
+  username: 'bot',
+  pluginManager: {
+    logDebug: true, //Enable debug logging
+    pluginDir: './myFolder' //Override default plugin folder path
+    removeListener: true,
+    removeAttributes: true,
+    onlyLoadJsPlugin: true,
+    whitelistFileTypes: ['.js', '.json']
+  }
+});
+
+//Automatically load all plugins inside './myFolder' folder
+bot.loadPlugin(PluginManager);
+
+//Reload all plugins with latest content
+bot.pluginManager.reload();
 ```
 
 ### Documentation
 
-[API](https://github.com/TheDudeFromCI/mineflayer-plugin-template/blob/master/docs/api.md)
-
-[Examples](https://github.com/TheDudeFromCI/mineflayer-plugin-template/tree/master/examples)
+[API](https://github.com/JungleDome/mineflayer-plugin-manager/blob/master/docs/api.md)
 
 ### License
 
-This project uses the [MIT](https://github.com/TheDudeFromCI/mineflayer-plugin-template/blob/master/LICENSE) license.
+This project uses the [MIT](https://github.com/JungleDome/mineflayer-plugin-manager/blob/master/LICENSE) license.
 
 ### Contributions
 
