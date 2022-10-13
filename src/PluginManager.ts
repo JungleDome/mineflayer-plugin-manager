@@ -30,11 +30,14 @@ export interface PluginManagerOptions {
 }
 
 export class PluginManager {
-    public loaded: boolean = false
-    public proxy: BotProxy
+    private loaded: boolean = false
+    private proxy: BotProxy
+    public get proxifiedBot(): Bot {
+        return this.proxy.proxifiedBot
+    }
 
-    constructor(public bot: Bot, public botOptions: BotOptions, public options: PluginManagerOptions) {
-        this.proxy = new BotProxy(bot, options)
+    constructor(private bot: Bot, private botOptions: BotOptions, public options: PluginManagerOptions) {
+        this.proxy = new BotProxy(this.bot, this.options)
     }
 
     private async getPluginPaths(): Promise<string[]> {
@@ -85,6 +88,9 @@ export class PluginManager {
 
         Util.debug(this.options.logDebug, "Plugins loaded")
         this.loaded = true
+
+        //@ts-ignore
+        proxifiedBot.emit('pluginManager_loaded')
 
         return proxifiedBot
     }

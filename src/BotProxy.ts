@@ -21,7 +21,8 @@ interface BotProxyOptions {
 export class BotProxy {
     public addedProperties: string[] | symbol[] = []
     public addedListeners: string[] = []
-    public proxyListenerMethod = ['addListener', 'on', 'once', 'prependListener', 'prependOnceListener']
+    public proxyListenerAddMethod = ['addListener', 'on', 'once', 'prependListener', 'prependOnceListener']
+    public proxyListenerRemoveMethod = ['removeListener']
     public bot: Bot
     public proxifiedBot: Bot
 
@@ -41,9 +42,15 @@ export class BotProxy {
                 if (value instanceof Function) {
                     return function (...args) {
                         //Register listeners added from plugins
-                        if (vm.proxyListenerMethod.includes(prop)) {
+                        if (vm.proxyListenerAddMethod.includes(prop)) {
                             vm.addedListeners.push([...args])
                             Util.debug(vm.options.logDebug, `Listener '${args[0]}' is registered`)
+                        } else if (vm.proxyListenerRemoveMethod.includes(prop)) {
+                            vm.addedListeners.splice(vm.addedListeners.findIndex(x => x == [...args]),1)
+                            Util.debug(vm.options.logDebug, `Listener '${args[0]}' is unregistered`)
+                        } else if (prop == 'removeAllListeners') {
+                            vm.addedListeners = vm.addedListeners.filter(x => x[0] != args[0])
+                            Util.debug(vm.options.logDebug, `All listener '${args[0]}' is unregistered`)
                         }
 
                         return value.apply(this === receiver ? target : this, args);
