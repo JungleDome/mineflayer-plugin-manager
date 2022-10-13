@@ -47,8 +47,11 @@ bot.loadPlugin(gui.plugin);
 //Loads plugin manager, it will automatically load all local plugins inside './myFolder' folder
 bot.loadPlugin(PluginManager);
 
-//Reload all plugins with latest content
-bot.pluginManager.reload();
+///Reload all plugins with latest content
+bot.on('chat', (message) => {
+  if (message == 'reload')
+    bot.pluginManager.reload();
+})
 ```
 
 Advanced usage (refer [API](https://github.com/JungleDome/mineflayer-plugin-manager/blob/master/docs/api.md)):
@@ -64,7 +67,7 @@ const bot = mineflayer.createBot({
   username: 'bot',
   pluginManager: {
     logDebug: true, //Enable debug logging
-    pluginDir: './myFolder' //Override default plugin folder path
+    pluginDir: './myFolder', //Override default plugin folder path
     removeListener: true,
     removeAttributes: true,
     onlyLoadJsPlugin: true,
@@ -79,7 +82,10 @@ bot.loadPlugin(gui.plugin);
 bot.loadPlugin(PluginManager);
 
 //Reload all plugins with latest content
-bot.pluginManager.reload();
+bot.on('chat', (message) => {
+  if (message == 'reload')
+    bot.pluginManager.reload();
+})
 ```
 
 ### Documentation

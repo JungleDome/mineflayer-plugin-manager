@@ -1,6 +1,20 @@
 # API
 
+## Events
+
+### pluginManager_loaded
+
+Emit when all plugins is loaded.
+
 ## Properties
+
+### bot.pluginManager.proxifiedBot
+
+Mineflayer bot object that captures new attribute & listener added by local plugin.
+
+*This object is passed to local plugin.*
+
+*Note: It is recommended to use this object outside of plugin scripts so that `bot.pluginManager.reload()` functions properly.*
 
 ### bot.pluginManager.options.pluginDir
 
