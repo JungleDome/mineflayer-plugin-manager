@@ -8,8 +8,8 @@ module.exports = (bot, options) => {
     }
 
     function addListener() {
-        bot.on('spawn', () => {
-            console.log('Bot has been spawn.');
+        bot.on('newEvent', () => {
+            console.log('A custom event has been triggered.');
         });
     }
 
