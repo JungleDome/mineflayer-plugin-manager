@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/JungleDome/mineflayer-plugin-manager#readme",
   "dependencies": {
-    "mineflayer": "^4.4.0"
+    "mineflayer": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "^18.8.2",
