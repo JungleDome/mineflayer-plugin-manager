@@ -13,6 +13,11 @@ module.exports = (bot, options) => {
         });
     }
 
+    function addObjectAssignAttribute() {
+        Object.assign(bot, {newAssignAttribute: {attr1: 'test_attr'}})
+    }
+
     addAttribute();
     addListener();
+    addObjectAssignAttribute()
 };
